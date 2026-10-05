@@ -390,15 +390,15 @@ function AuxilioPage() {
     { id: "aimbot", label: "AIMBOT", icon: Target },
     { id: "sensi", label: "OTIMIZAÇÃO", icon: ShieldCheck },
     { id: "modules", label: "MÓDULOS", icon: Grid3X3 },
-    { id: "injection", label: "INJECTOR", icon: TerminalSquare },
+    { id: "injection", label: "TERMUX CODES", icon: TerminalSquare },
   ];
-  const titles = { aimbot: "AIMBOT", sensi: "OTIMIZAÇÃO", modules: "MÓDULOS", injection: "INJECTOR" };
+  const titles = { aimbot: "AIMBOT", sensi: "OTIMIZAÇÃO", modules: "MÓDULOS", injection: "TERMUX CODES" };
   const descriptions = { aimbot: "Assistência e ajustes de precisão", sensi: "Escolha a plataforma e o perfil", modules: "Atalhos dos recursos do painel", injection: "Abrir Free Fire normal ou MAX" };
   return <div className="page-view yx-aux-page">
     <section className="yx-aux-window">
       <img className="yx-aux-background" src="/rd-portrait.jpeg" alt="" aria-hidden="true" />
       <header className="yx-aux-heading">
-        <div className="yx-aux-heading-copy"><span>AUXÍLIO DO RD / CENTRAL DE CONTROLE</span><h1>Seu espaço de auxílio</h1><p>Ajustes de mira, desempenho e módulos em um só lugar.</p></div>
+        <div className="yx-aux-heading-copy"><span>AUXÍLIO DO RD / CENTRAL DE CONTROLE</span><img className="aux-scarface-banner" src="/scarface-banner.jpg" alt="Scarface" /><p>Ajustes de mira, desempenho e módulos em um só lugar.</p></div>
         <span className="yx-aux-status"><i /> ONLINE</span>
       </header>
       <nav className="yx-aux-tabs" aria-label="Seções do auxílio">
@@ -420,8 +420,8 @@ function AuxilioPage() {
         <AuxModule name="Controle de recuo" icon={MoveDown} active={toggles.recoil} onClick={() => toggle("recoil")} />
         <AuxModule name="Ajuste fino" icon={Gauge} active={toggles.fine} onClick={() => toggle("fine")} />
       </div>}
-      {tab === "injection" && <div className="aux-injection yx-injection"><div className="aux-action-row"><button onClick={() => { openGame("normal"); inject("FF NORMAL"); }} disabled={Boolean(injecting)}><Sparkles size={17} /> ABRIR FF NORMAL</button><button onClick={() => { openGame("max"); inject("FF MAX"); }} disabled={Boolean(injecting)}><Sparkles size={17} /> ABRIR FF MAX</button></div><div className={`aux-injection-state ${active ? "active" : ""}`}>{injecting ? <><RefreshCw className="spin" size={18} /> Preparando...</> : active ? <><span className="aux-green-dot" /> {active} pronto</> : "Escolha uma versão do jogo"}</div><div className="aux-console">{logs.map((log, index) => <div key={`${log}-${index}`} className={log.includes("SUCESSO") ? "success" : ""}><span>[{new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}]</span> {log}</div>)}</div></div>}
-      <footer className="aux-footer">AUXÍLIO DO RD <b>· PAINEL DE AUXÍLIO</b></footer>
+      {tab === "injection" && <div className="aux-injection yx-injection"><div className="aux-action-row"><button onClick={() => { openGame("normal"); inject("FF NORMAL"); }} disabled={Boolean(injecting)}>ABRIR FF NORMAL</button><button onClick={() => { openGame("max"); inject("FF MAX"); }} disabled={Boolean(injecting)}>ABRIR FF MAX</button></div><div className={`aux-injection-state ${active ? "active" : ""}`}>{injecting ? <><RefreshCw className="spin" size={18} /> Preparando...</> : active ? <><span className="aux-green-dot" /> {active} pronto</> : "Escolha uma versão do jogo"}</div><div className="aux-console">{logs.map((log, index) => <div key={`${log}-${index}`} className={log.includes("SUCESSO") ? "success" : ""}><span>[{new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}]</span> {log}</div>)}</div></div>}
+      <footer className="aux-footer">RD AUXÍLIO DE MIRA <b> / PURPOU DEV</b></footer>
     </section>
   </div>;
 }
@@ -452,7 +452,7 @@ function InfoPage() {
         <a className="contact-button" href="https://discord.gg/bgSrEknD4d" target="_blank" rel="noreferrer"><span className="contact-letter">D</span><span><b>Entrar no Discord</b><small>Comunidade · suporte</small></span><ChevronRight size={17} /></a>
       </section>
     </div>
-    <div className="quote-strip"><span>“</span><p>O Senhor é a minha força e o meu escudo; nele confiou o meu coração.</p><span>SALMOS 28:7</span></div>
+    <div className="quote-strip"><span>“</span><p>O Senhor é a minha luz e a minha salvação; de quem terei medo?</p><span>SALMOS 27:1</span></div>
   </div>;
 }
 

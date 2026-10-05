@@ -819,3 +819,11 @@ body { background: linear-gradient(135deg, #050505 0%, #222 52%, #080808 100%); 
   .aux-toggle-row.yx-aim-row .ffh4x-icon { width: 43px; height: 27px; }
   .yx-module-grid .aux-module .ffh4x-icon { width: 42px; height: 28px; }
 }
+
+/* Banner de Scarface no cabeçalho da aba Auxílio. */
+.yx-aux-window > .yx-aux-heading { min-height: 146px; }
+.aux-scarface-banner { display: block; width: min(100%, 560px); height: 74px; margin: 14px 0 10px; border: 1px solid #3b3b3b; border-radius: 9px; object-fit: cover; object-position: center; filter: brightness(.82) contrast(1.12); }
+@media (max-width: 760px) {
+  .yx-aux-window > .yx-aux-heading { min-height: 119px; }
+  .aux-scarface-banner { height: 51px; margin: 10px 0 8px; border-radius: 7px; }
+}
