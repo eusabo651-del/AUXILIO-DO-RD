@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import {
   Apple,
@@ -123,6 +123,124 @@ function AppLogo({ compact = false }: { compact?: boolean }) {
   );
 }
 
+type PortraitParticle = { x: number; y: number; dx: number; dy: number; size: number; delay: number; color: string };
+
+function ParticlePortrait({ src }: { src: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d");
+    const image = imageRef.current;
+    if (!canvas || !context || !image) return;
+
+    let frame = 0;
+    let disposed = false;
+    let particles: PortraitParticle[] = [];
+    const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+    const ease = (value: number) => {
+      const normalized = Math.max(0, Math.min(1, value));
+      return normalized * normalized * (3 - 2 * normalized);
+    };
+    const randomAt = (x: number, y: number) => {
+      const value = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+      return value - Math.floor(value);
+    };
+
+    const setup = () => {
+      if (disposed || !image.complete || !image.naturalWidth) return;
+      cancelAnimationFrame(frame);
+      const bounds = canvas.getBoundingClientRect();
+      if (bounds.width < 2 || bounds.height < 2) return;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.35);
+      canvas.width = Math.round(bounds.width * dpr);
+      canvas.height = Math.round(bounds.height * dpr);
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const sample = document.createElement("canvas");
+      const sampleContext = sample.getContext("2d", { willReadFrequently: true });
+      if (!sampleContext) return;
+      const sampleScale = Math.min(1, 250 / Math.max(bounds.width, bounds.height));
+      const sampleWidth = Math.max(120, Math.round(bounds.width * sampleScale));
+      const sampleHeight = Math.max(120, Math.round(bounds.height * sampleScale));
+      sample.width = sampleWidth;
+      sample.height = sampleHeight;
+      const fit = Math.max(sampleWidth / image.naturalWidth, sampleHeight / image.naturalHeight);
+      const drawWidth = image.naturalWidth * fit;
+      const drawHeight = image.naturalHeight * fit;
+      sampleContext.drawImage(image, (sampleWidth - drawWidth) / 2, (sampleHeight - drawHeight) * 0.43, drawWidth, drawHeight);
+
+      const pixels = sampleContext.getImageData(0, 0, sampleWidth, sampleHeight).data;
+      const step = sampleWidth < 180 ? 3 : 4;
+      const scaleX = bounds.width / sampleWidth;
+      const scaleY = bounds.height / sampleHeight;
+      const particleSize = Math.max(1.5, step * Math.min(scaleX, scaleY) * 0.8);
+      particles = [];
+      for (let y = 0; y < sampleHeight; y += step) {
+        for (let x = 0; x < sampleWidth; x += step) {
+          const offset = (y * sampleWidth + x) * 4;
+          const r = pixels[offset];
+          const g = pixels[offset + 1];
+          const b = pixels[offset + 2];
+          const alpha = pixels[offset + 3];
+          if (alpha < 90 || (r + g + b) / 3 < 22) continue;
+          const drift = randomAt(x + 17, y + 23);
+          particles.push({
+            x: x * scaleX,
+            y: y * scaleY,
+            dx: (drift - 0.18) * 76,
+            dy: (randomAt(x + 101, y + 211) - 0.3) * 74 + 24,
+            size: particleSize,
+            delay: randomAt(x + 311, y + 419),
+            color: `rgba(${r},${g},${b},${alpha / 255})`,
+          });
+        }
+      }
+
+      const startedAt = performance.now();
+      const draw = (now: number) => {
+        if (disposed) return;
+        const cycle = (now - startedAt) % 8700;
+        let breakup = 0;
+        if (cycle >= 1300 && cycle < 3400) breakup = ease((cycle - 1300) / 2100);
+        else if (cycle >= 3400 && cycle < 4300) breakup = 1;
+        else if (cycle >= 4300 && cycle < 6400) breakup = 1 - ease((cycle - 4300) / 2100);
+
+        context.clearRect(0, 0, bounds.width, bounds.height);
+        for (const particle of particles) {
+          const progress = ease((breakup - particle.delay * 0.2) / 0.8);
+          const x = particle.x + particle.dx * progress;
+          const y = particle.y + particle.dy * progress + 65 * progress * progress;
+          context.globalAlpha = 1 - progress * 0.48;
+          context.fillStyle = particle.color;
+          context.fillRect(x, y, particle.size, particle.size);
+        }
+        context.globalAlpha = 1;
+        image.style.opacity = String(reducedMotion ? 0.68 : 0.18 + (1 - breakup) * 0.2);
+        if (!reducedMotion) frame = requestAnimationFrame(draw);
+      };
+      draw(startedAt);
+    };
+
+    const observer = typeof ResizeObserver !== "undefined" ? new ResizeObserver(setup) : null;
+    observer?.observe(canvas);
+    image.addEventListener("load", setup);
+    window.addEventListener("resize", setup);
+    setup();
+    return () => {
+      disposed = true;
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+      image.removeEventListener("load", setup);
+      window.removeEventListener("resize", setup);
+    };
+  }, [src]);
+
+  return <><img ref={imageRef} className="rd-particle-base" src={src} alt="Retrato em preto e branco" fetchPriority="high" /><canvas ref={canvasRef} className="rd-particle-canvas" aria-hidden="true" /></>;
+}
+
 function LoadingScreen() {
   return <div className="loading-screen"><div className="loading-orbit"><Crosshair size={28} /></div><p>CARREGANDO PAINEL</p><span>Conectando com segurança...</span></div>;
 }
@@ -159,7 +277,7 @@ function LoginScreen() {
       <header className="login-header"><AppLogo /><div className="secure-chip"><ShieldCheck size={14} /> SISTEMA PROTEGIDO</div></header>
       <section className="login-content">
         <div className="login-copy">
-          <figure className="login-photo rd-login-photo"><img src="/rd-portrait.jpeg" alt="Retrato em preto e branco" fetchPriority="high" /><figcaption>AUXÍLIO DO RD / ÁREA DE ACESSO</figcaption></figure>
+          <figure className="login-photo rd-login-photo"><ParticlePortrait src="/rd-portrait.jpeg" /><figcaption>AUXÍLIO DO RD / ÁREA DE ACESSO</figcaption></figure>
           <span className="eyebrow"><span className="eyebrow-dot" /> ACESSO EXCLUSIVO</span>
           <h1>AUXÍLIO<br /><em>DO RD</em></h1>
           <p>Entre com sua chave e acesse seu espaço de controle.</p>
