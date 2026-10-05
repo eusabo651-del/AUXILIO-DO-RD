@@ -726,3 +726,7 @@ body { background: linear-gradient(135deg, #050505 0%, #222 52%, #080808 100%); 
 @media (prefers-reduced-motion: reduce) {
   .rd-login-photo .rd-particle-canvas { mix-blend-mode: normal; }
 }
+
+
+/* Chuva global de pequenos recortes da fotografia enviada; não intercepta controles. */
+.rd-particle-rain { position: fixed; z-index: 70; inset: 0; display: block; width: 100vw; height: 100vh; pointer-events: none; opacity: .52; mix-blend-mode: screen; }
