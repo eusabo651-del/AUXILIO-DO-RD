@@ -278,16 +278,16 @@ function LoginScreen() {
       <header className="login-header"><AppLogo /><div className="secure-chip"><ShieldCheck size={14} /> SISTEMA PROTEGIDO</div></header>
       <section className="login-content">
         <div className="login-copy">
-          <figure className="login-photo rd-login-photo"><ParticlePortrait src="/rd-portrait.jpeg" /><figcaption>AUXÍLIO DO RD / ÁREA DE ACESSO</figcaption></figure>
+          <figure className="login-photo rd-login-photo"><ParticlePortrait src="/rd-portrait.jpeg" /><figcaption>PURPOU DEV / 2026</figcaption></figure>
           <span className="eyebrow"><span className="eyebrow-dot" /> ACESSO EXCLUSIVO</span>
           <h1>AUXÍLIO<br /><em>DO RD</em></h1>
           <p>Entre com sua chave e acesse seu espaço de controle.</p>
-          <div className="login-stats"><div><b>01</b><span>ANDROID<br />E IOS</span></div><div><b>∞</b><span>AJUSTES<br />PERSONALIZADOS</span></div></div>
+          <div className="login-stats"><div><b>01</b><span>PURPOU<br />DEV</span></div><div><b>∞</b><span>PURPOU<br />DEV</span></div></div>
         </div>
         <div className="login-card-wrap">
-          <div className="login-card-topline"><span className="red-line" /><span>AUXÍLIO DO RD / {adminMode ? "PRIVATE" : "LICENSE"}</span><span className="online-dot" /></div>
+          <div className="login-card-topline"><span className="red-line" /><span>PURPOU DEV / {adminMode ? "PRIVATE" : "LICENSE"}</span><span className="online-dot" /></div>
           <div className="login-card">
-            <div className="login-card-heading"><div className="card-icon"><LockKeyhole size={21} /></div><div><span className="mini-label">{adminMode ? "PRIVATE" : "ACESSO PROTEGIDO"}</span><h2>{adminMode ? "Painel administrativo" : "Ative sua licença"}</h2></div></div>
+            <div className="login-card-heading"><div className="card-icon"><LockKeyhole size={21} /></div><div><span className="mini-label">{adminMode ? "PRIVATE" : "ACESSO PRIVATE"}</span><h2>{adminMode ? "Painel administrativo" : "Coloque sua chave abaixo"}</h2></div></div>
             <p className="card-description">{adminMode ? "Acesso restrito ao administrador." : "Informe sua chave de acesso para continuar."}</p>
             <form onSubmit={submit} className="login-form">
               <label><span>{adminMode ? "Chave de administrador" : "Chave de acesso"}</span><div className="input-shell"><KeyRound size={17} /><input value={accessKey} onChange={event => setAccessKey(event.target.value)} placeholder={adminMode ? "XXXXXXXXXX" : "RD-XXX-XXXXXXXXXX"} type="password" autoComplete="current-password" autoCapitalize="none" autoCorrect="off" spellCheck={false} required /><button type="button" className="input-action" onClick={() => setAccessKey("")} aria-label="Limpar chave"><X size={15} /></button></div></label>
@@ -298,7 +298,7 @@ function LoginScreen() {
           </div>
         </div>
       </section>
-      <footer className="login-footer"><span>AUXÍLIO DO RD / 2026</span><span>Auxilio</span><span className="footer-red">●</span></footer>
+      <footer className="login-footer"><span>AUXÍLIO DO RD / PURPOU DEV</span><span>Auxilio</span><span className="footer-red">●</span></footer>
       <InstallNotice />
     </main>
   );
@@ -398,13 +398,13 @@ function AuxilioPage() {
     <section className="yx-aux-window">
       <img className="yx-aux-background" src="/rd-portrait.jpeg" alt="" aria-hidden="true" />
       <header className="yx-aux-heading">
-        <div className="yx-aux-heading-copy"><span>AUXÍLIO DO RD / CENTRAL DE CONTROLE</span><img className="aux-scarface-banner" src="/scarface-banner.jpg" alt="Scarface" /><p>Ajustes de mira, desempenho e módulos em um só lugar.</p></div>
+        <div className="yx-aux-heading-copy"><span>RD MIRA</span><img className="aux-scarface-banner" src="/scarface-banner.jpg" alt="Scarface" /><p>Ajustes de mira, desempenho e módulos em um só lugar.</p></div>
         <span className="yx-aux-status"><i /> ONLINE</span>
       </header>
       <nav className="yx-aux-tabs" aria-label="Seções do auxílio">
         {tabs.map(item => <button key={item.id} className={tab === item.id ? "active" : ""} onClick={() => setTab(item.id)}>{item.icon && <item.icon size={17} />}<span>{item.label}</span></button>)}
       </nav>
-      <div className="yx-aux-title"><div><span>AUXÍLIO DO RD / {titles[tab]}</span><h2>{titles[tab] === "AIMBOT" ? "Assistência de mira" : titles[tab]}</h2><p>{descriptions[tab]}</p></div></div>
+      <div className="yx-aux-title"><div><span>AUXÍLIO DO RD / {titles[tab]}</span><h2>{titles[tab] === "AIMBOT" ? "AUXILIO DE MIRA" : titles[tab]}</h2><p>{descriptions[tab]}</p></div></div>
       {tab === "aimbot" && <div className="aux-panel-list yx-aim-list">
         <AuxToggle label="Assistência de Mira Leve" description="Movimento suave e natural" value={toggles.light} icon={Crosshair} onClick={() => toggle("light")} />
         <AuxToggle label="Assistência de Mira Precisa" description="Ajuste preciso da resposta" value={toggles.precise} icon={Target} onClick={() => toggle("precise")} />
@@ -440,7 +440,7 @@ function EmptyState({ favoritesOnly }: { favoritesOnly: boolean }) { return <div
 
 function InfoPage() {
   return <div className="page-view">
-    <PageHeading kicker="AUXÍLIO DO RD" title="Feito para evoluir." description="Precisão é detalhe. Controle é consistência." />
+    <PageHeading kicker="AUXÍLIO DO RD" title="FEITO PARA OS FORTES." description="Precisão é detalhe. Controle é consistência." />
     <div className="about-layout">
       <section className="about-eye-banner" aria-label="Banner AUXÍLIO DO RD">
         <img src="/rd-portrait.jpeg" alt="Retrato em preto e branco" />
