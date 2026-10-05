@@ -809,8 +809,8 @@ body { background: linear-gradient(135deg, #050505 0%, #222 52%, #080808 100%); 
   .yx-module-grid .aux-module .ump-weapon { width: 42px; height: 23px; }
 }
 
-/* Ícone FFH4X no layout da aba Auxílio. */
-.yx-aux-tabs::before { content: ""; background: transparent url("/ffh4x-skull-only.png") center / 86% 86% no-repeat; }
+/* Ícone original do trilho; a UMP permanece somente nos controles das funções. */
+.yx-aux-tabs::before { content: "RD"; background: #27282c; }
 .ffh4x-icon { display: block; flex: 0 0 auto; width: 44px; height: 32px; border-radius: 7px; object-fit: cover; object-position: center; filter: contrast(1.08) drop-shadow(0 3px 5px #0009); }
 .aux-toggle-row.yx-aim-row .ffh4x-icon { width: 54px; height: 32px; }
 .yx-module-grid .aux-module .ffh4x-icon { width: 48px; height: 34px; }
