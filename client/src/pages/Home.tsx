@@ -319,6 +319,10 @@ function InstallNotice() {
 }
 
 function UserShell({ children, view, onChangeView, session, onLogout }: { children: React.ReactNode; view: View; onChangeView: (view: View) => void; session: { username: string; planId: string; expiresAt: Date | string; deviceId?: string | null }; onLogout: () => void }) {
+  useEffect(() => {
+    document.body.classList.add("rd-user-mode");
+    return () => document.body.classList.remove("rd-user-mode");
+  }, []);
   const nav: { id: View; label: string; icon: React.ElementType }[] = [
     { id: "auxilio", label: "Auxílio", icon: SlidersHorizontal },
     { id: "info", label: "Sobre", icon: CircleHelp },
