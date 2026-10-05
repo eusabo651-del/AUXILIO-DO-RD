@@ -730,8 +730,6 @@ body { background: linear-gradient(135deg, #050505 0%, #222 52%, #080808 100%); 
 
 /* Chuva global de pequenos recortes da fotografia enviada; fica atrás do conteúdo. */
 .rd-particle-rain { position: fixed; z-index: 0; inset: 0; display: block; width: 100vw; height: 100vh; pointer-events: none; opacity: .52; mix-blend-mode: screen; }
-/* O painel autenticado não usa a chuva global: evita transparência sobre os cartões no Safari. */
-body.rd-user-mode .rd-particle-rain { display: none !important; }
 /* Atualização visual: recursos em cartões e navegação inferior em todos os tamanhos. */
 .app-shell.rd-user-shell { position: relative; z-index: 2; display: block; min-height: 100svh; background: #06080c; }
 .rd-user-main { position: relative; z-index: 2; width: 100%; padding-bottom: 104px; }
