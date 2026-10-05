@@ -1,7 +1,7 @@
 {
   "name": "AUXÍLIO DO RD",
   "short_name": "RD AUXÍLIO",
-  "description": "Painel de auxílio e ajustes para jogadores.",
+  "description": "Auxilio de mira",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#080808",
