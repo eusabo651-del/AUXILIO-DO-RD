@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
-import ParticleRain from "../components/ParticleRain";
 import {
   Apple,
   Anchor,
@@ -273,7 +272,6 @@ function LoginScreen() {
   const pending = login.isPending || adminLogin.isPending;
   return (
     <main className="login-shell">
-      <ParticleRain />
       <div className="login-noise" />
       <div className="login-split-glow" />
       <header className="login-header"><AppLogo /><div className="secure-chip"><ShieldCheck size={14} /> SISTEMA PROTEGIDO</div></header>
@@ -395,7 +393,6 @@ function AuxilioPage() {
   ];
   const titles = { aimbot: "MIRA", sensi: "DESEMPENHO", modules: "MÓDULOS", injection: "INJEÇÃO" };
   const descriptions = { aimbot: "Assistência e ajustes de precisão", sensi: "Escolha a plataforma e o perfil", modules: "Atalhos dos recursos do painel", injection: "Abrir Free Fire normal ou MAX" };
-  const selectedCount = Object.values(toggles).filter(Boolean).length;
   return <div className="page-view yx-aux-page">
     <section className="yx-aux-window">
       <img className="yx-aux-background" src="/rd-portrait.jpeg" alt="" aria-hidden="true" />
@@ -406,7 +403,7 @@ function AuxilioPage() {
       <nav className="yx-aux-tabs" aria-label="Seções do auxílio">
         {tabs.map(item => <button key={item.id} className={tab === item.id ? "active" : ""} onClick={() => setTab(item.id)}>{item.icon && <item.icon size={17} />}<span>{item.label}</span></button>)}
       </nav>
-      <div className="yx-aux-title"><div><span>AUXÍLIO DO RD / {titles[tab]}</span><h2>{titles[tab] === "MIRA" ? "Recursos disponíveis" : titles[tab]}</h2><p>{tab === "aimbot" ? "Ative os recursos que deseja usar no seu painel." : descriptions[tab]}</p></div>{tab === "aimbot" && <strong className="aux-selection-count">{selectedCount} SELECIONADO{selectedCount === 1 ? "" : "S"}</strong>}</div>
+      <div className="yx-aux-title"><div><span>AUXÍLIO DO RD / {titles[tab]}</span><h2>{titles[tab] === "MIRA" ? "Assistência de mira" : titles[tab]}</h2><p>{descriptions[tab]}</p></div></div>
       {tab === "aimbot" && <div className="aux-panel-list yx-aim-list">
         <AuxToggle label="Assistência de Mira Leve" description="Movimento suave e natural" value={toggles.light} icon={Crosshair} onClick={() => toggle("light")} />
         <AuxToggle label="Assistência de Mira Precisa" description="Ajuste preciso da resposta" value={toggles.precise} icon={Target} onClick={() => toggle("precise")} />
@@ -454,7 +451,7 @@ function InfoPage() {
         <a className="contact-button" href="https://discord.gg/bgSrEknD4d" target="_blank" rel="noreferrer"><span className="contact-letter">D</span><span><b>Entrar no Discord</b><small>Comunidade · suporte</small></span><ChevronRight size={17} /></a>
       </section>
     </div>
-    <div className="quote-strip"><span>“</span><p>Posso todas as coisas naquele que me fortalece.</p><span>FILIPENSES 4:13</span></div>
+    <div className="quote-strip"><span>“</span><p>O Senhor é a minha força e o meu escudo; nele confiou o meu coração.</p><span>SALMOS 28:7</span></div>
   </div>;
 }
 
@@ -471,7 +468,7 @@ function UserApp({ session, onLogout }: { session: { username: string; planId: s
 function AdminShell({ children, view, onChangeView, onLogout }: { children: React.ReactNode; view: AdminView; onChangeView: (view: AdminView) => void; onLogout: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const go = (next: AdminView) => { onChangeView(next); setMenuOpen(false); };
-  return <div className="admin-shell"><ParticleRain /><button className="admin-menu-button" onClick={() => setMenuOpen(value => !value)} aria-label="Abrir menu"><Menu size={20} /></button>{menuOpen && <div className="admin-menu-popover"><b>AUXÍLIO DO RD ADMIN</b><button onClick={() => go("overview")}><Settings2 size={16} /> Config</button><button onClick={() => go("licenses")}><PackagePlus size={16} /> Gerenciar</button><button onClick={() => go("licenses")}><KeyRound size={16} /> Chaves</button></div>}<aside className="admin-sidebar"><div className="admin-logo"><AppLogo /><span className="admin-badge">ADMIN</span></div><div className="admin-nav"><span className="sidebar-section-label">CONTROLE</span><button className={view === "overview" ? "active" : ""} onClick={() => go("overview")}><LayoutDashboard size={18} /> Config</button><button className={view === "licenses" ? "active" : ""} onClick={() => go("licenses")}><KeyRound size={18} /> Chaves</button></div><div className="admin-sidebar-footer"><div className="admin-identity"><div className="admin-avatar"><Crown size={16} /></div><div><b>AUXÍLIO DO RD</b><span>Administrador</span></div></div><button className="sidebar-logout" onClick={onLogout}><LogOut size={16} /> Sair</button></div></aside><main className="admin-main"><header className="admin-topbar"><div className="admin-mobile-logo"><AppLogo compact /></div><div><span className="topbar-kicker">CONTROL CENTER</span><h2>Olá, AUXÍLIO DO RD <Crown size={18} /></h2></div><div className="admin-top-actions"><span className="admin-online"><span className="online-dot" /> SISTEMA ONLINE</span><button className="icon-button" onClick={() => toast.info("Painel atualizado")}><RefreshCw size={17} /></button><button className="admin-mobile-exit" onClick={onLogout}><LogOut size={16} /></button></div></header>{children}</main></div>;
+  return <div className="admin-shell"><button className="admin-menu-button" onClick={() => setMenuOpen(value => !value)} aria-label="Abrir menu"><Menu size={20} /></button>{menuOpen && <div className="admin-menu-popover"><b>AUXÍLIO DO RD ADMIN</b><button onClick={() => go("overview")}><Settings2 size={16} /> Config</button><button onClick={() => go("licenses")}><PackagePlus size={16} /> Gerenciar</button><button onClick={() => go("licenses")}><KeyRound size={16} /> Chaves</button></div>}<aside className="admin-sidebar"><div className="admin-logo"><AppLogo /><span className="admin-badge">ADMIN</span></div><div className="admin-nav"><span className="sidebar-section-label">CONTROLE</span><button className={view === "overview" ? "active" : ""} onClick={() => go("overview")}><LayoutDashboard size={18} /> Config</button><button className={view === "licenses" ? "active" : ""} onClick={() => go("licenses")}><KeyRound size={18} /> Chaves</button></div><div className="admin-sidebar-footer"><div className="admin-identity"><div className="admin-avatar"><Crown size={16} /></div><div><b>AUXÍLIO DO RD</b><span>Administrador</span></div></div><button className="sidebar-logout" onClick={onLogout}><LogOut size={16} /> Sair</button></div></aside><main className="admin-main"><header className="admin-topbar"><div className="admin-mobile-logo"><AppLogo compact /></div><div><span className="topbar-kicker">CONTROL CENTER</span><h2>Olá, AUXÍLIO DO RD <Crown size={18} /></h2></div><div className="admin-top-actions"><span className="admin-online"><span className="online-dot" /> SISTEMA ONLINE</span><button className="icon-button" onClick={() => toast.info("Painel atualizado")}><RefreshCw size={17} /></button><button className="admin-mobile-exit" onClick={onLogout}><LogOut size={16} /></button></div></header>{children}</main></div>;
 }
 
 function AdminOverview({ onGoLicenses }: { onGoLicenses: () => void }) {
