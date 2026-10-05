@@ -39,6 +39,7 @@ import {
   Star,
   Trash2,
   Target,
+  TerminalSquare,
   UserRound,
   Users,
   Wifi,
@@ -386,12 +387,12 @@ function AuxilioPage() {
     setLogs(value => [...value, `[SISTEMA] Abrindo Free Fire ${max ? "MAX" : "Normal"}...`]);
   };
   const tabs: { id: "aimbot" | "sensi" | "modules" | "injection"; label: string; icon?: React.ElementType }[] = [
-    { id: "aimbot", label: "MIRA" },
-    { id: "sensi", label: "DESEMPENHO", icon: Gauge },
+    { id: "aimbot", label: "AIMBOT", icon: Target },
+    { id: "sensi", label: "OTIMIZAÇÃO", icon: ShieldCheck },
     { id: "modules", label: "MÓDULOS", icon: Grid3X3 },
-    { id: "injection", label: "INJEÇÃO" },
+    { id: "injection", label: "INJECTOR", icon: TerminalSquare },
   ];
-  const titles = { aimbot: "MIRA", sensi: "DESEMPENHO", modules: "MÓDULOS", injection: "INJEÇÃO" };
+  const titles = { aimbot: "AIMBOT", sensi: "OTIMIZAÇÃO", modules: "MÓDULOS", injection: "INJECTOR" };
   const descriptions = { aimbot: "Assistência e ajustes de precisão", sensi: "Escolha a plataforma e o perfil", modules: "Atalhos dos recursos do painel", injection: "Abrir Free Fire normal ou MAX" };
   return <div className="page-view yx-aux-page">
     <section className="yx-aux-window">
@@ -403,7 +404,7 @@ function AuxilioPage() {
       <nav className="yx-aux-tabs" aria-label="Seções do auxílio">
         {tabs.map(item => <button key={item.id} className={tab === item.id ? "active" : ""} onClick={() => setTab(item.id)}>{item.icon && <item.icon size={17} />}<span>{item.label}</span></button>)}
       </nav>
-      <div className="yx-aux-title"><div><span>AUXÍLIO DO RD / {titles[tab]}</span><h2>{titles[tab] === "MIRA" ? "Assistência de mira" : titles[tab]}</h2><p>{descriptions[tab]}</p></div></div>
+      <div className="yx-aux-title"><div><span>AUXÍLIO DO RD / {titles[tab]}</span><h2>{titles[tab] === "AIMBOT" ? "Assistência de mira" : titles[tab]}</h2><p>{descriptions[tab]}</p></div></div>
       {tab === "aimbot" && <div className="aux-panel-list yx-aim-list">
         <AuxToggle label="Assistência de Mira Leve" description="Movimento suave e natural" value={toggles.light} icon={Crosshair} onClick={() => toggle("light")} />
         <AuxToggle label="Assistência de Mira Precisa" description="Ajuste preciso da resposta" value={toggles.precise} icon={Target} onClick={() => toggle("precise")} />
