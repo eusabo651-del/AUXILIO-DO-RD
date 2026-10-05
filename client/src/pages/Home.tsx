@@ -425,8 +425,8 @@ function AuxilioPage() {
     </section>
   </div>;
 }
-function AuxToggle({ label, description, value, icon: _Icon, onClick }: { label: string; description: string; value: boolean; icon: React.ElementType; onClick: () => void }) { return <button type="button" className="aux-toggle-row yx-aim-row" aria-pressed={value} onClick={onClick}><img className="ump-weapon" src="/ump-free-fire.webp" alt="UMP do Free Fire" /><span><b>{label}</b><small>{description}</small></span><i className={value ? "on" : ""}><em /></i></button>; }
-function AuxModule({ name, icon: _Icon, active, onClick }: { name: string; icon: React.ElementType; active: boolean; onClick: () => void }) { return <button className={`aux-module ${active ? "active" : ""}`} onClick={onClick}><img className="ump-weapon" src="/ump-free-fire.webp" alt="UMP do Free Fire" /><span><b>{name}</b><small>{active ? "Ativado" : "Toque para ativar"}</small></span><i>{active ? <Check size={14} /> : <ChevronRight size={15} />}</i></button>; }
+function AuxToggle({ label, description, value, icon: _Icon, onClick }: { label: string; description: string; value: boolean; icon: React.ElementType; onClick: () => void }) { return <button type="button" className="aux-toggle-row yx-aim-row" aria-pressed={value} onClick={onClick}><img className="ffh4x-icon" src="/ffh4x-logo.jpg" alt="FFH4X" /><span><b>{label}</b><small>{description}</small></span><i className={value ? "on" : ""}><em /></i></button>; }
+function AuxModule({ name, icon: _Icon, active, onClick }: { name: string; icon: React.ElementType; active: boolean; onClick: () => void }) { return <button className={`aux-module ${active ? "active" : ""}`} onClick={onClick}><img className="ffh4x-icon" src="/ffh4x-logo.jpg" alt="FFH4X" /><span><b>{name}</b><small>{active ? "Ativado" : "Toque para ativar"}</small></span><i>{active ? <Check size={14} /> : <ChevronRight size={15} />}</i></button>; }
 
 function HistoryPage({ favoritesOnly = false }: { favoritesOnly?: boolean }) {
   const query = favoritesOnly ? trpc.generator.favorites.useQuery() : trpc.generator.history.useQuery();

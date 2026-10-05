@@ -808,3 +808,14 @@ body { background: linear-gradient(135deg, #050505 0%, #222 52%, #080808 100%); 
   .aux-toggle-row.yx-aim-row .ump-weapon { width: 43px; height: 23px; }
   .yx-module-grid .aux-module .ump-weapon { width: 42px; height: 23px; }
 }
+
+/* Ícone FFH4X no layout da aba Auxílio. */
+.yx-aux-tabs::before { content: ""; background: #090909 url("/ffh4x-logo.jpg") center / 86% 86% no-repeat; }
+.ffh4x-icon { display: block; flex: 0 0 auto; width: 44px; height: 32px; border-radius: 7px; object-fit: cover; object-position: center; filter: contrast(1.08) drop-shadow(0 3px 5px #0009); }
+.aux-toggle-row.yx-aim-row .ffh4x-icon { width: 54px; height: 32px; }
+.yx-module-grid .aux-module .ffh4x-icon { width: 48px; height: 34px; }
+@media (max-width: 760px) {
+  .yx-aux-tabs::before { background-size: 88% 88%; }
+  .aux-toggle-row.yx-aim-row .ffh4x-icon { width: 43px; height: 27px; }
+  .yx-module-grid .aux-module .ffh4x-icon { width: 42px; height: 28px; }
+}
