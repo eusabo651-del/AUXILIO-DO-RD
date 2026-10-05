@@ -798,3 +798,13 @@ body { background: linear-gradient(135deg, #050505 0%, #222 52%, #080808 100%); 
   .yx-aim-row i.on em { transform: translateX(16px); }
   .yx-aux-window > .aux-footer { margin-top: 14px; font-size: 8px; }
 }
+
+/* UMP do Free Fire usada como marcador visual das funções do Auxílio. */
+.ump-weapon { display: block; flex: 0 0 auto; width: 54px; height: 28px; object-fit: contain; object-position: center; filter: brightness(1.45) contrast(1.18) drop-shadow(0 3px 5px #0009); }
+.aux-toggle-row.yx-aim-row .ump-weapon { width: 54px; height: 28px; }
+.yx-module-grid .aux-module { gap: 12px; }
+.yx-module-grid .aux-module .ump-weapon { width: 50px; height: 27px; }
+@media (max-width: 760px) {
+  .aux-toggle-row.yx-aim-row .ump-weapon { width: 43px; height: 23px; }
+  .yx-module-grid .aux-module .ump-weapon { width: 42px; height: 23px; }
+}
