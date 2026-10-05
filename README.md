@@ -21,13 +21,13 @@ Importe este repositório na Vercel e configure estas variáveis de ambiente par
 
 - `RBXIS_ADMIN_KEY`: defina uma chave privada e exclusiva no painel da Vercel; não a inclua no código ou no repositório.
 - `RBXIS_SESSION_SECRET`: segredo aleatório longo, diferente deste exemplo. Gere um valor novo com `openssl rand -hex 32`. Não compartilhe nem o commite.
-- `MOCKAPI_KEYS_URL`: `https://6ac2d1c03f4ae78f69453b4b.mockapi.io/usuarios` (opcional; este é o padrão do projeto)
+- `MOCKAPI_KEYS_URL`: `https://6ac2d1c03f4ae78f69453b4b.mockapi.io/scarkeys` (opcional; este é o padrão do projeto). Se a variável já estiver definida na Vercel, atualize-a para essa URL.
 
 O login administrativo só funciona com `RBXIS_ADMIN_KEY`; o login de usuários e o Admin falham de forma segura se `RBXIS_SESSION_SECRET` não estiver definido, e o Admin também falha de forma segura se sua própria variável estiver ausente. Segredos não são embutidos no código nem devolvidos como nome de usuário.
 
 ## MockAPI
 
-A coleção configurada é `https://6ac2d1c03f4ae78f69453b4b.mockapi.io/usuarios`. O código não cria coleções automaticamente. Se o schema da collection estiver restritivo, inclua os seguintes campos para compatibilidade com as funções do painel:
+A coleção configurada é `https://6ac2d1c03f4ae78f69453b4b.mockapi.io/scarkeys`. O código não cria coleções automaticamente. Se o schema da collection estiver restritivo, inclua os seguintes campos para compatibilidade com as funções do painel:
 
 | Campo | Tipo esperado | Uso |
 |---|---|---|
