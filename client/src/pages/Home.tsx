@@ -393,6 +393,7 @@ function AuxilioPage() {
   ];
   const titles = { aimbot: "MIRA", sensi: "DESEMPENHO", modules: "MÓDULOS", injection: "INJEÇÃO" };
   const descriptions = { aimbot: "Assistência e ajustes de precisão", sensi: "Escolha a plataforma e o perfil", modules: "Atalhos dos recursos do painel", injection: "Abrir Free Fire normal ou MAX" };
+  const selectedCount = Object.values(toggles).filter(Boolean).length;
   return <div className="page-view yx-aux-page">
     <section className="yx-aux-window">
       <img className="yx-aux-background" src="/rd-portrait.jpeg" alt="" aria-hidden="true" />
@@ -403,7 +404,7 @@ function AuxilioPage() {
       <nav className="yx-aux-tabs" aria-label="Seções do auxílio">
         {tabs.map(item => <button key={item.id} className={tab === item.id ? "active" : ""} onClick={() => setTab(item.id)}>{item.icon && <item.icon size={17} />}<span>{item.label}</span></button>)}
       </nav>
-      <div className="yx-aux-title"><div><span>AUXÍLIO DO RD / {titles[tab]}</span><h2>{titles[tab] === "MIRA" ? "Assistência de mira" : titles[tab]}</h2><p>{descriptions[tab]}</p></div></div>
+      <div className="yx-aux-title"><div><span>AUXÍLIO DO RD / {titles[tab]}</span><h2>{titles[tab] === "MIRA" ? "Recursos disponíveis" : titles[tab]}</h2><p>{tab === "aimbot" ? "Ative os recursos que deseja usar no seu painel." : descriptions[tab]}</p></div>{tab === "aimbot" && <strong className="aux-selection-count">{selectedCount} SELECIONADO{selectedCount === 1 ? "" : "S"}</strong>}</div>
       {tab === "aimbot" && <div className="aux-panel-list yx-aim-list">
         <AuxToggle label="Assistência de Mira Leve" description="Movimento suave e natural" value={toggles.light} icon={Crosshair} onClick={() => toggle("light")} />
         <AuxToggle label="Assistência de Mira Precisa" description="Ajuste preciso da resposta" value={toggles.precise} icon={Target} onClick={() => toggle("precise")} />
@@ -451,7 +452,7 @@ function InfoPage() {
         <a className="contact-button" href="https://discord.gg/bgSrEknD4d" target="_blank" rel="noreferrer"><span className="contact-letter">D</span><span><b>Entrar no Discord</b><small>Comunidade · suporte</small></span><ChevronRight size={17} /></a>
       </section>
     </div>
-    <div className="quote-strip"><span>“</span><p>O Senhor é a minha força e o meu escudo; nele confiou o meu coração.</p><span>SALMOS 28:7</span></div>
+    <div className="quote-strip"><span>“</span><p>Posso todas as coisas naquele que me fortalece.</p><span>FILIPENSES 4:13</span></div>
   </div>;
 }
 

@@ -730,3 +730,46 @@ body { background: linear-gradient(135deg, #050505 0%, #222 52%, #080808 100%); 
 
 /* Chuva global de pequenos recortes da fotografia enviada; não intercepta controles. */
 .rd-particle-rain { position: fixed; z-index: 70; inset: 0; display: block; width: 100vw; height: 100vh; pointer-events: none; opacity: .52; mix-blend-mode: screen; }
+
+/* Atualização visual: recursos em cartões e navegação inferior em todos os tamanhos. */
+.app-shell.rd-user-shell { display: block; min-height: 100svh; }
+.rd-user-main { width: 100%; padding-bottom: 104px; }
+.rd-sidebar { position: fixed; z-index: 80; right: 0; bottom: 0; left: 0; display: flex; flex-direction: row; align-items: center; gap: 18px; width: 100%; height: 82px; padding: 10px clamp(18px, 4vw, 54px); border-top: 1px solid #454545; border-right: 0; background: linear-gradient(180deg, #171717f7, #080808f7); box-shadow: 0 -18px 45px #000b; backdrop-filter: blur(18px); }
+.rd-sidebar-brand, .rd-nav-label, .rd-account-block { display: none; }
+.rd-user-nav { display: flex; flex: 1; align-items: stretch; justify-content: center; gap: 8px; min-width: 0; }
+.rd-user-nav button { justify-content: center; min-width: 132px; min-height: 54px; padding: 0 20px; border: 1px solid transparent; text-align: center; }
+.rd-user-nav button.active::before { top: -1px; right: 18px; bottom: auto; left: 18px; width: auto; height: 3px; border-radius: 0 0 3px 3px; }
+.rd-sidebar-foot { display: block; margin: 0; padding: 0; border: 0; }
+.rd-logout { min-width: 42px; min-height: 42px; padding: 0 12px; }
+.yx-aux-window { background: radial-gradient(ellipse at 50% -10%, #18355366, transparent 42%), linear-gradient(145deg, #101b2aef, #080e17f5 74%); }
+.yx-aux-window > .yx-aux-background { opacity: .22; filter: grayscale(1) brightness(.42) contrast(1.2); }
+.yx-aux-heading-copy h1, .yx-aux-title h2 { text-transform: uppercase; }
+.yx-aux-title { align-items: center; }
+.aux-selection-count { flex: 0 0 auto; align-self: flex-start; padding-top: 7px; color: #d7e7fa; font-size: 10px; letter-spacing: .1em; }
+.yx-aim-list { grid-template-columns: repeat(2, minmax(0, 1fr)); display: grid; gap: 14px; }
+.aux-toggle-row.yx-aim-row { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr; align-items: start; min-height: 166px; padding: 20px; border-color: #27445f; border-radius: 18px; background: linear-gradient(145deg, #142335e8, #09121ee8); box-shadow: inset 0 1px #ffffff0c, 0 12px 28px #0005; }
+.aux-toggle-row.yx-aim-row:hover { border-color: #5d9bd2; background: linear-gradient(145deg, #1a3048, #0b1623); }
+.yx-aim-row .yx-aim-icon { grid-column: 1; grid-row: 1; width: 42px; height: 42px; padding: 9px; border: 1px solid #527799; border-radius: 12px; color: #d5eaff; background: #123458; }
+.yx-aim-row > span { grid-column: 1 / -1; grid-row: 2; align-self: end; }
+.yx-aim-row > i { grid-column: 2; grid-row: 1; align-self: center; }
+.yx-aim-row b { color: #f5f8fc; font-size: 15px; font-weight: 800; text-transform: uppercase; }
+.yx-aim-row small { color: #9eb2c7; }
+.yx-aim-row i { border-color: #38536c; background: #101d2b; }
+.yx-aim-row i.on { border-color: #71b8ff; background: #1d70b5; }
+.yx-aim-row i em { background: #a4b6c8; }
+.yx-aim-row i.on em { background: #fff; }
+
+@media (max-width: 760px) {
+  .rd-user-main { padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
+  .rd-sidebar { height: auto; min-height: 70px; padding: 7px 10px max(7px, env(safe-area-inset-bottom)); }
+  .rd-user-nav { gap: 2px; }
+  .rd-user-nav button { flex: 1 1 0; min-width: 0; min-height: 49px; padding: 0 7px; border-radius: 10px; font-size: 9px; }
+  .rd-user-nav button.active::before { right: 13px; left: 13px; }
+  .rd-logout { min-width: 38px; min-height: 38px; padding: 0; }
+  .rd-logout span { display: none; }
+  .yx-aim-list { grid-template-columns: 1fr; gap: 10px; }
+  .aux-toggle-row.yx-aim-row { min-height: 126px; padding: 15px; border-radius: 14px; }
+  .yx-aim-row .yx-aim-icon { width: 36px; height: 36px; padding: 8px; }
+  .yx-aim-row b { font-size: 12px; }
+  .aux-selection-count { font-size: 8px; }
+}
