@@ -412,7 +412,7 @@ function AuxilioPage() {
         <AuxToggle label="Controle de Recuo" description="Ajuste fino do controle" value={toggles.recoil} icon={MoveDown} onClick={() => toggle("recoil")} />
         <AuxToggle label="Ajuste Fino de Precisão" description="Personalize o perfil de mira" value={toggles.fine} icon={Gauge} onClick={() => toggle("fine")} />
       </div>}
-      {tab === "sensi" && <div className="aux-center-panel yx-performance-panel"><Gauge size={38} /><h2>Selecione seu celular</h2><p>Escolha a plataforma para continuar no gerador.</p><div className="aux-choice-row"><button onClick={() => toast.info("Abra o Gerador e selecione iOS")}>iOS</button><button className="selected" onClick={() => toast.info("Abra o Gerador e selecione Android")}>Android</button></div></div>}
+      {tab === "sensi" && <div className="aux-center-panel yx-performance-panel"><Gauge size={38} /><h2>Selecione seu celular</h2><p>Escolha a plataforma para continuar no gerador.</p><div className="aux-choice-row"><button onClick={() => toast.info("Dispositivo computado com sucesso!")}>iOS</button><button className="selected" onClick={() => toast.info("Dispositivo computado com sucesso!")}>Android</button></div></div>}
       {tab === "modules" && <div className="aux-module-grid yx-module-grid">
         <AuxModule name="Mira leve" icon={Crosshair} active={toggles.light} onClick={() => toggle("light")} />
         <AuxModule name="Mira precisa" icon={Target} active={toggles.precise} onClick={() => toggle("precise")} />
